@@ -21,6 +21,13 @@
             <a href="/register">Register</a>
         </div>
        @endguest
+       @auth
+            <form method="post" action="/logout">
+                @csrf
+
+                <x-form-button>Log Out</x-form-button>
+            </form>
+       @endauth
         <div  class="inline-flex items-center justify-center px-5 py-2.5 bg-white s text-cyan-900 font-semibold text-sm rounded-xl hover:shadow-sm hover:shadow-green-800 transition shadow-lg">
             <a href="/jobs/create">Create Jobs</a>
         </div>

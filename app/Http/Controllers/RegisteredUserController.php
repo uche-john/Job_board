@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-//use App\Models\User as ModelsUser;
+use App\Models\User;
 use Illuminate\Http\Request;
-//use Illuminate\Http\Models\User;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Auth;
-//use Illuminate\Auth\Authenticatable;
-//use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
+
+
 
 class RegisteredUserController extends Controller
 {
@@ -27,12 +26,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', Password::min(6), 'confirmed'],
         ]);
 
-
         //create the user
-        //$user = ModelsUser::create($validatedAttributes);
-        dd($validatedAttributes);
-        //log in
-       // Authenticatable ::login($user);
+       $user = User::create($validatedAttributes);
+
+       //log in
+        FacadesAuth::login($user);
+
         //redirect
         return redirect('/jobs');
     }

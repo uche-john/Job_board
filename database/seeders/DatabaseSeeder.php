@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'first_name' => 'John',
-            'second_name' => 'Doe',
+            'last_name' => 'Doe',
             'email' => 'test@example.com',
         ]);
         Job::factory(100)->create();

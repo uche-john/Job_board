@@ -5,20 +5,26 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::view('/', 'home');
-Route::view('/students', 'students');
 Route::view('/about', 'about');
-Route::resource('jobs', JobController::class);
 
+// Custom student view route
+Route::get('/students', [JobController::class, 'student']);
 
-//Auth
+// Job Routes with correct HTTP verbs
+Route::get('/jobs', [JobController::class, 'index']);                           // Public list
+Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth'); // Show creation form
+Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');       // Handle form submission
+
+Route::get('/jobs/{job}', [JobController::class, 'show']);                        // Public single view
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth', 'can:edit-job,job']);
+Route::patch('/jobs/{job}', [JobController::class, 'update']);                    // Changed to PATCH
+Route::delete('/jobs/{job}', [JobController::class, 'destroy']);                  // Changed to DELETE & fixed typo
+
+// Auth Routes
 Route::get('/register', [RegisteredUserController::class,'create']);
 Route::post('/register', [RegisteredUserController::class,'store']);
 
-
-Route::get('/login', [SessionController::class,'create']);
+Route::get('/login', [SessionController::class,'create'])->name('login');
 Route::post('/login', [SessionController::class,'store']);
-Route::post('/logout', [SessionController::class,'destory']);
-
-
+Route::post('/logout', [SessionController::class,'destroy']); // Fixed typo here too if needed

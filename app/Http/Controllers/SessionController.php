@@ -32,7 +32,7 @@ class SessionController extends Controller
         //redirect
         return redirect('/jobs');
     }
-    public function destory()
+    public function destroy()
     {
 
         Auth::logout();

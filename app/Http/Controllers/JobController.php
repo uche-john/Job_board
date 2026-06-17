@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 // use Illuminate\Http\Request;
 // use PhpParser\Builder\Function_;
 use App\Models\Job;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+//use App\Models\User;
+//use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Gate;
 
 class JobController extends Controller
 {
@@ -15,7 +15,7 @@ class JobController extends Controller
     public function student()
     {
         return view('students', [
-        'jobs' => Job::with('employer')->simplePaginate(20)
+        'jobs' => Job::with('employer')->simplePaginate(19)
 
         ]);
     }
@@ -24,7 +24,7 @@ class JobController extends Controller
     public function index()
     {
      return view('jobs.index', [
-       'jobs' => Job::with('employer')->latest()->simplePaginate(14)
+       'jobs' => Job::with('employer')->latest()->simplePaginate(7)
 
 
     ]);    }

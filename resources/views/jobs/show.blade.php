@@ -25,5 +25,7 @@
                 <a href="/jobs/{{$job->id}}/edit" class="border border-cyan-900 p-2 px-4 mt-10 rounded-2xl hover:bg-cyan-900 hover:text-amber-100"> Edit Job</a>
             </div>
            @endcan
+
+
     </div>
 </x-layout>

@@ -13,11 +13,11 @@ Route::get('/students', [JobController::class, 'student']);
 
 // Job Routes with correct HTTP verbs
 Route::get('/jobs', [JobController::class, 'index']);                           // Public list
-Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth'); // Show creation form
+Route::get('/jobs/create', [JobController::class, 'create']);
 Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');       // Handle form submission
 
 Route::get('/jobs/{job}', [JobController::class, 'show']);                        // Public single view
-Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth', 'can:edit-job,job']);
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth', 'can:edit_job,job']);
 Route::patch('/jobs/{job}', [JobController::class, 'update']);                    // Changed to PATCH
 Route::delete('/jobs/{job}', [JobController::class, 'destroy']);                  // Changed to DELETE & fixed typo
 

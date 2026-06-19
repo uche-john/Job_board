@@ -88,7 +88,7 @@ class JobController extends Controller
         //authorize the request (on hold)
 
         //delete the job
-       // $job->delete();
+        $job->delete();
 
         //redirect
         return redirect('/jobs');

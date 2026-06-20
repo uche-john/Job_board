@@ -17,9 +17,17 @@ Route::get('/jobs/create', [JobController::class, 'create']);
 Route::post('/jobs', [JobController::class, 'store'])->middleware('auth');       // Handle form submission
 
 Route::get('/jobs/{job}', [JobController::class, 'show']);                        // Public single view
-Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])->middleware(['auth', 'can:edit_job,job']);
-Route::patch('/jobs/{job}', [JobController::class, 'update']);                    // Changed to PATCH
-Route::delete('/jobs/{job}', [JobController::class, 'destroy']);                  // Changed to DELETE & fixed typo
+Route::get('/jobs/{job}/edit', [JobController::class, 'edit'])
+    ->middleware('auth')
+    ->can('edit_job', 'job');
+
+Route::patch('/jobs/{job}', [JobController::class, 'update'])                   // Changed to PATCH
+    ->middleware('auth')
+    ->can('edit_job', 'job');
+
+Route::delete('/jobs/{job}', [JobController::class, 'destroy'])                  // Changed to DELETE & fixed typo
+    ->middleware('auth')
+    ->can('edit_job', 'job');
 
 // Auth Routes
 Route::get('/register', [RegisteredUserController::class,'create']);
